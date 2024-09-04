@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MADHAN's TIMER</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: black;
+        animation: none; /* Initially, no animation */
+        color: white;
+    }
+    #time {
+        font-size: 48px;
+        margin-top: 360px;
+    }
+    #flash {
+        font-size: 24px;
+        margin-top: 20px;
+    }
+    @keyframes flashAnimation {
+        0%  { background-color: #ff0000; }
+        5%  { background-color: #ffff00; }
+        10% { background-color: #ff0000; }
+        15% { background-color: #ffff00; }
+        20% { background-color: #ff0000; }
+        25% { background-color: #ffff00; }
+        30% { background-color: #ff0000; }
+        35% { background-color: #ffff00; }
+        40% { background-color: #ff0000; }
+        45% { background-color: #ffff00; }
+        50% { background-color: #ff0000; }
+        55% { background-color: #ffff00; }
+        60% { background-color: #ff0000; }
+        65% { background-color: #ffff00; }
+        70% { background-color: #ff0000; }
+        75% { background-color: #ffff00; }
+        80% { background-color: #ff0000; }
+        85% { background-color: #ffff00; }
+        90% { background-color: #ff0000; }
+        95% { background-color: #ffff00; }
+        100% { background-color: #ff0000; } /* Back to original color */
+    }
+</style>
+</head>
+<body>
+<div id="time"></div>
+<div id="flash"></div>
+
+<script>
+function updateTime() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+
+    // Add leading zeros if needed
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    document.getElementById('time').innerHTML = hours + ':' + minutes + ':' + seconds;
+
+    // Flash background colors if it's the starting of the 4th minute of every 5-minute interval
+    if (minutes % 5 == 4 && seconds == 40) {
+        flashBackground();
+    }
+}
+
+function flashBackground() {
+    document.body.style.animation = 'flashAnimation 6s'; // Apply animation to the body for 6 seconds
+    // Reset animation after 10 seconds
+    setTimeout(function() {
+        document.body.style.animation = 'none';
+    }, 10000);
+}
+
+// Update time every second
+setInterval(updateTime, 1000);
+</script>
+</body>
+</html>
